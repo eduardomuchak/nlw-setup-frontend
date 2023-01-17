@@ -1,8 +1,15 @@
-function Habit() {
+import styles from './style.module.css';
+
+interface Props {
+  completed: number;
+}
+
+function Habit({ completed }: Props) {
   return (
-    <div>
-      <h1>Habit</h1>
-    </div>
+    <>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <div className={styles.habit}>{completed}</div>
+    </>
   );
 }
 
