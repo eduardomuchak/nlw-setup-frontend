@@ -1,5 +1,3 @@
-import styles from './style.module.css';
-
 interface Props {
   completed: number;
 }
@@ -7,8 +5,7 @@ interface Props {
 function Habit({ completed }: Props) {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <div className={styles.habit}>{completed}</div>
+      <div className={'bg-zinc-600 w-10 h-10 flex items-center justify-center'}>{completed}</div>
     </>
   );
 }

@@ -17,14 +17,8 @@
         "react"
     ],
     "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "auto"
-            }
-        ],
-            "no-console": "warn",
-            "react-hooks/exhaustive-deps": "off"
+        "no-console": "warn",
+        "react-hooks/exhaustive-deps": "off"
     },
     "settings": {
         "import/extensions": [".ts", ".tsx"]
