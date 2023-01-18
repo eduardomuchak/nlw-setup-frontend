@@ -1,5 +1,5 @@
 import logo from '../../assets/logo.svg';
-import NewHabitButton from '../newHabitButton';
+import NewHabitButton from '../NewHabitButton';
 
 function Header() {
   return (
