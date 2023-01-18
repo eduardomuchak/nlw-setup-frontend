@@ -1,5 +1,6 @@
 import logo from '../../assets/logo.svg';
 import NewHabitButton from '../NewHabitButton';
+import SummaryTable from '../SummaryTable';
 
 function Header() {
   return (
@@ -8,6 +9,7 @@ function Header() {
         <img src={logo} className="Habits logo" alt="Habits logo" />
         <NewHabitButton />
       </div>
+      <SummaryTable />
     </div>
   );
 }
