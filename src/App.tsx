@@ -1,15 +1,12 @@
+import Header from './components/header';
 import './styles/global.css';
 
-import Habit from './components/habit';
-
+// import Habit from './components/habit';
 function App() {
   return (
-    <>
-      <Habit completed={2} />
-      <Habit completed={4} />
-      <Habit completed={1} />
-      <Habit completed={10} />
-    </>
+    <div className={'w-screen h-screen flex justify-center items-center'}>
+      <Header />
+    </div>
   );
 }
 
