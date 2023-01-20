@@ -1,10 +1,23 @@
 import { Check } from 'phosphor-react';
 import { CheckboxWeekDay } from '../CheckboxWeekDay';
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createHabit } from '../../services/habits';
 function NewHabitForm() {
+  const queryClient = useQueryClient();
+
   const [formValues, setFormValues] = useState({
     title: '',
     weekDays: [] as number[],
+  });
+
+  const mutation = useMutation({
+    mutationFn: createHabit,
+    onSuccess: () => {
+      setFormValues({ title: '', weekDays: [] });
+      window.alert('Hábito criado com sucesso!');
+      queryClient.invalidateQueries({ queryKey: ['habits'] });
+    },
   });
 
   const availableWeekDays = [
@@ -19,6 +32,9 @@ function NewHabitForm() {
 
   const createNewHabit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (formValues.title === '' || !formValues.weekDays.length) return;
+
+    mutation.mutate(formValues);
   };
 
   const handleToggleWeekDay = (weekDayIndex: number) => {
