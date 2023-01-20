@@ -54,7 +54,6 @@ function NewHabitForm() {
   const createNewHabit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formValues.title === '' || !formValues.weekDays.length) return;
-
     mutation.mutate(formValues);
   };
 
@@ -80,6 +79,7 @@ function NewHabitForm() {
         id="title"
         placeholder="ex.: Exercícios, dormir 8h, etc..."
         autoFocus
+        value={formValues.title}
         onChange={(event) => setFormValues({ ...formValues, title: event.target.value })}
       />
 
