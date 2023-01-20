@@ -1,7 +1,6 @@
 import { Check } from 'phosphor-react';
 import { CheckboxWeekDay } from '../CheckboxWeekDay';
 import { useState } from 'react';
-
 function NewHabitForm() {
   const [formValues, setFormValues] = useState({
     title: '',
