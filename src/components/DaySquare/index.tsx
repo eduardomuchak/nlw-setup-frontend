@@ -37,9 +37,7 @@ function DaySquare({ completed = 0, amount = 0, date }: Props) {
 
           <ProgressBar progress={progress} />
 
-          <div className="mt-6 flex flex-col gap-3">
-            <CheckboxButton />
-          </div>
+          <CheckboxButton date={date} />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>
