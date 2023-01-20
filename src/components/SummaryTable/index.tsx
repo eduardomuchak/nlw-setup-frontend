@@ -3,6 +3,15 @@ import { generateDatesFromYearBeginning } from '../../utils/generate-dates-from-
 import DaySquare from '../DaySquare';
 import { getSummary } from '../../services/summary';
 import { Loading } from '../Loading';
+import { RequestError } from '../RequestError';
+import dayjs from 'dayjs';
+
+type Summary = {
+  id: string;
+  date: string;
+  amount: number;
+  completed: number;
+};
 
 function SummaryTable() {
   const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -15,7 +24,7 @@ function SummaryTable() {
   const { isLoading, error, data: summary } = useQuery({ queryKey: ['summary'], queryFn: getSummary });
 
   if (isLoading) return <Loading />;
-  if (error) return <p>Request Error</p>;
+  if (error) return <RequestError />;
 
   return (
     <div className={'w-full flex'}>
@@ -27,9 +36,19 @@ function SummaryTable() {
         ))}
       </div>
       <div className={'grid grid-rows-7 grid-flow-col gap-3'}>
-        {summaryDays.map((day) => (
-          <DaySquare key={day.toString()} amount={5} completed={1} />
-        ))}
+        {summaryDays.map((date) => {
+          const dayInSummary: Summary = summary.find((summaryDay: Summary) => {
+            return dayjs(date).isSame(summaryDay.date, 'day');
+          });
+          return (
+            <DaySquare
+              key={date.toString()}
+              amount={dayInSummary?.amount}
+              completed={dayInSummary?.completed}
+              date={date}
+            />
+          );
+        })}
         {amountOfDaysToFill > 0
           ? Array.from({ length: amountOfDaysToFill }).map((_, index) => (
               <div

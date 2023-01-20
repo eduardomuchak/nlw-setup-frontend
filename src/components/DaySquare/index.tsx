@@ -2,14 +2,19 @@ import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
 import ProgressBar from '../ProgressBar';
 import { CheckboxButton } from '../CheckboxButton';
+import dayjs from 'dayjs';
 
 interface Props {
-  completed: number;
-  amount: number;
+  completed?: number;
+  amount?: number;
+  date: Date;
 }
 
-function DaySquare({ completed, amount }: Props) {
-  const progress = (completed / amount) * 100;
+function DaySquare({ completed = 0, amount = 0, date }: Props) {
+  const progress = amount > 0 ? (completed / amount) * 100 : 0;
+
+  const dayAndMonth = dayjs(date).format('DD/MM');
+  const dayOfWeek = dayjs(date).format('dddd');
 
   return (
     <Popover.Root>
@@ -27,8 +32,8 @@ function DaySquare({ completed, amount }: Props) {
       <Popover.Portal>
         <Popover.Content className="min-w-[320px] w-full p-6 rounded-2xl bg-zinc-900 flex flex-col">
           <Popover.Arrow width={16} height={8} className="fill-zinc-900" />
-          <span className="font-semibold text-zinc-400">Segunda-feira</span>
-          <span className="mt-1 font-extrabold text-3xl leading-tight">01/01</span>
+          <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
+          <span className="mt-1 font-extrabold text-3xl leading-tight">{dayAndMonth}</span>
 
           <ProgressBar progress={progress} />
 
