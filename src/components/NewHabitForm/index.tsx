@@ -3,6 +3,8 @@ import { CheckboxWeekDay } from '../CheckboxWeekDay';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createHabit } from '../../services/habits';
+import { toast } from 'react-toastify';
+
 function NewHabitForm() {
   const queryClient = useQueryClient();
 
@@ -15,7 +17,15 @@ function NewHabitForm() {
     mutationFn: createHabit,
     onSuccess: () => {
       setFormValues({ title: '', weekDays: [] });
-      window.alert('Hábito criado com sucesso!');
+      toast.success('Hábito criado com sucesso', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+      });
       queryClient.invalidateQueries({ queryKey: ['habits'] });
     },
   });
@@ -72,6 +82,7 @@ function NewHabitForm() {
             key={`${index}-${weekDay}`}
             weekDay={weekDay}
             onCheckedChange={() => handleToggleWeekDay(index)}
+            checked={formValues.weekDays.includes(index)}
           />
         ))}
       </div>
