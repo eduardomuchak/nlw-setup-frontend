@@ -1,6 +1,17 @@
 import { Check } from 'phosphor-react';
+import { CheckboxWeekDay } from '../CheckboxWeekDay';
 
 function NewHabitForm() {
+  const availableWeekDays = [
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado',
+  ];
+
   return (
     <form className="w-full flex flex-col mt-6">
       <label htmlFor="title" className="font-semibold leading-tight">
@@ -17,6 +28,12 @@ function NewHabitForm() {
       <label htmlFor="" className="font-semibold leading-tight mt-4">
         Qual a recorrência
       </label>
+
+      <div className="flex flex-col gap-2 mt-3">
+        {availableWeekDays.map((weekDay, index) => (
+          <CheckboxWeekDay key={`${index}-${weekDay}`} weekDay={weekDay} />
+        ))}
+      </div>
 
       <button
         type="submit"

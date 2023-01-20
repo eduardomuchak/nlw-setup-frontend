@@ -1,6 +1,7 @@
 import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
 import ProgressBar from '../ProgressBar';
+import { CheckboxButton } from '../CheckboxButton';
 
 interface Props {
   completed: number;
@@ -28,7 +29,12 @@ function DaySquare({ completed, amount }: Props) {
           <Popover.Arrow width={16} height={8} className="fill-zinc-900" />
           <span className="font-semibold text-zinc-400">Segunda-feira</span>
           <span className="mt-1 font-extrabold text-3xl leading-tight">01/01</span>
+
           <ProgressBar progress={progress} />
+
+          <div className="mt-6 flex flex-col gap-3">
+            <CheckboxButton />
+          </div>
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>
