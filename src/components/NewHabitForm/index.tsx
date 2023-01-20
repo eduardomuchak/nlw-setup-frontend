@@ -28,6 +28,17 @@ function NewHabitForm() {
       });
       queryClient.invalidateQueries({ queryKey: ['habits'] });
     },
+    onError: () => {
+      toast.error('Erro ao criar hábito', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+      });
+    },
   });
 
   const availableWeekDays = [
