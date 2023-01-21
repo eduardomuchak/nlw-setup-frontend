@@ -26,7 +26,7 @@ function NewHabitForm() {
         draggable: true,
         theme: 'light',
       });
-      queryClient.invalidateQueries({ queryKey: ['habits'] });
+      queryClient.invalidateQueries({ queryKey: ['summary'] });
     },
     onError: () => {
       toast.error('Erro ao criar hábito', {
