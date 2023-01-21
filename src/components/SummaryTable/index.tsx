@@ -37,17 +37,19 @@ function SummaryTable() {
       </div>
       <div className={'grid grid-rows-7 grid-flow-col gap-3'}>
         {summaryDays.map((date) => {
-          const dayInSummary: Summary = summary.find((summaryDay: Summary) => {
-            return dayjs(date).isSame(summaryDay.date, 'day');
-          });
-          return (
-            <DaySquare
-              key={date.toString()}
-              amount={dayInSummary?.amount}
-              completed={dayInSummary?.completed}
-              date={date}
-            />
-          );
+          if (summary.length) {
+            const dayInSummary: Summary = summary.find((summaryDay: Summary) => {
+              return dayjs(date).isSame(summaryDay.date, 'day');
+            });
+            return (
+              <DaySquare
+                key={date.toString()}
+                amount={dayInSummary?.amount}
+                defaultCompleted={dayInSummary?.completed}
+                date={date}
+              />
+            );
+          }
         })}
         {amountOfDaysToFill > 0
           ? Array.from({ length: amountOfDaysToFill }).map((_, index) => (

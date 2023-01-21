@@ -1,16 +1,19 @@
 import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
 import ProgressBar from '../ProgressBar';
-import { CheckboxButton } from '../CheckboxButton';
+import { HabitsList } from '../HabitsList';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 
 interface Props {
-  completed?: number;
+  defaultCompleted?: number;
   amount?: number;
   date: Date;
 }
 
-function DaySquare({ completed = 0, amount = 0, date }: Props) {
+function DaySquare({ defaultCompleted = 0, amount = 0, date }: Props) {
+  const [completed, setCompleted] = useState(defaultCompleted);
+
   const progress = amount > 0 ? (completed / amount) * 100 : 0;
 
   const dayAndMonth = dayjs(date).format('DD/MM');
@@ -37,7 +40,7 @@ function DaySquare({ completed = 0, amount = 0, date }: Props) {
 
           <ProgressBar progress={progress} />
 
-          <CheckboxButton date={date} />
+          <HabitsList date={date} setCompleted={setCompleted} />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>
