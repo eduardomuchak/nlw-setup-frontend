@@ -17,27 +17,11 @@ function NewHabitForm() {
     mutationFn: createHabit,
     onSuccess: () => {
       setFormValues({ title: '', weekDays: [] });
-      toast.success('Hábito criado com sucesso', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'light',
-      });
+      toast.success('Hábito criado com sucesso');
       queryClient.invalidateQueries({ queryKey: ['summary'] });
     },
     onError: () => {
-      toast.error('Erro ao criar hábito', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'light',
-      });
+      toast.error('Erro ao criar hábito');
     },
   });
 
