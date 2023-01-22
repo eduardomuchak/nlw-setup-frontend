@@ -58,7 +58,7 @@ function NewHabitForm() {
         Qual o seu comprometimento?
       </label>
       <input
-        className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400"
+        className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-zinc-900"
         type="text"
         id="title"
         placeholder="ex.: Exercícios, dormir 8h, etc..."
@@ -84,7 +84,7 @@ function NewHabitForm() {
 
       <button
         type="submit"
-        className="mt-6 rounded-lg p-4 gap-3 flex items-center justify-center font-semibold bg-green-600 hover:bg-green-700 transition-all duration-400"
+        className="mt-6 rounded-lg p-4 gap-3 flex items-center justify-center font-semibold bg-violet-600 hover:bg-violet-700 transition-all duration-400 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-zinc-900"
       >
         <Check size={20} weight="bold" />
         Confirmar
