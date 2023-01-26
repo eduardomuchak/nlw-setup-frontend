@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export function Header() {
   return (
     <Popover className="relative bg-transparent">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-5xl px-6">
         <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/">
