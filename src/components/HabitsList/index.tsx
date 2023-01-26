@@ -2,7 +2,7 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Check } from 'phosphor-react';
 import { getInfoByDay } from '../../services/day';
-import { Loading } from '../Loading';
+import { ModalLoading } from '../ModalLoading';
 import dayjs from 'dayjs';
 import { updateToggleHabit } from '../../services/habits';
 import { useEffect, useState } from 'react';
@@ -62,7 +62,7 @@ export function HabitsList({ date, setCompleted }: Props) {
   }, [data]);
 
   if (isLoading) {
-    return <Loading />;
+    return <ModalLoading />;
   }
 
   if (error) {

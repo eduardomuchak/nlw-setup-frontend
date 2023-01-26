@@ -2,7 +2,7 @@ import { List, Trash, X } from 'phosphor-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { deleteHabit, getHabits } from '../../services/habits';
-import { Loading } from '../Loading';
+import { ModalLoading } from '../ModalLoading';
 import { RequestError } from '../RequestError';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -56,7 +56,7 @@ export function ListOfHabitsModal() {
             <X size={24} aria-label="Botão Fechar Modal" />
           </Dialog.Close>
           <Dialog.Title className="text-3xl leading-tight font-extrabold">Lista de Hábitos</Dialog.Title>
-          {isLoading ? <Loading /> : null}
+          {isLoading ? <ModalLoading /> : null}
           {error ? <RequestError /> : null}
           {habits && habits.length ? (
             <Dialog.Description className="text-xl mt-4 overflow-x-auto max-h-screen">
