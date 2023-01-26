@@ -3,6 +3,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { List, X } from 'phosphor-react';
 
 import logo from '../../assets/logo.svg';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   return (
@@ -10,22 +11,22 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <Link to="/">
               <img src={logo} alt="Habits logo" className="h-12 w-auto" />
-            </a>
+            </Link>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-violet-500 p-2 text-gray-400 hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-500">
+            <Popover.Button className="border border-violet-500 font-semibold rounded-lg px-2 py-2 flex items-center hover:bg-violet-600 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background">
               <List className="h-6 w-6" aria-hidden="true" color="white" />
             </Popover.Button>
           </div>
           <nav className="hidden space-x-10 md:flex">
-            <a href="#" className="text-base font-medium text-white hover:text-zinc-200">
+            <Link to="/habits-list" className="text-base font-medium text-white hover:text-violet-300">
               Lista de Hábitos
-            </a>
-            <a href="#" className="text-base font-medium text-white hover:text-zinc-200">
+            </Link>
+            <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
               Sumário
-            </a>
+            </Link>
           </nav>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <button className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:bg-violet-600 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background">
@@ -52,13 +53,20 @@ export function Header() {
                   <img src={logo} alt="Habits logo" className="h-12 w-auto" />
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <X className="h-6 w-6" aria-hidden="true" />
+                  <Popover.Button className="inline-flex items-center justify-center rounded-lg bg-violet-500 p-2 text-gray-400 hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-600">
+                    <X className="h-6 w-6" aria-hidden="true" color={'white'} />
                   </Popover.Button>
                 </div>
               </div>
               <div className="mt-6">
-                <nav className="grid gap-y-8">{/* Aqui vão as páginas */}</nav>
+                <nav className="flex flex-col items-end gap-y-8">
+                  <Link to="/habits-list" className="text-base font-medium text-white hover:text-violet-300">
+                    Lista de Hábitos
+                  </Link>
+                  <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
+                    Sumário
+                  </Link>
+                </nav>
               </div>
             </div>
           </div>
