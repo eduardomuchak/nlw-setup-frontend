@@ -21,11 +21,11 @@ export function Header() {
             </Popover.Button>
           </div>
           <nav className="hidden space-x-10 md:flex">
+            <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
+              Início
+            </Link>
             <Link to="/habits-list" className="text-base font-medium text-white hover:text-violet-300">
               Lista de Hábitos
-            </Link>
-            <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
-              Sumário
             </Link>
           </nav>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
@@ -46,7 +46,7 @@ export function Header() {
         leaveTo="opacity-0 scale-95"
       >
         <Popover.Panel focus className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
-          <div className="divide-y-2 divide-gray-50 rounded-lg bg-background brightness-110 shadow-lg ring-1 ring-black ring-opacity-5">
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-background shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -58,16 +58,14 @@ export function Header() {
                   </Popover.Button>
                 </div>
               </div>
-              <div className="mt-6">
-                <nav className="flex flex-col items-end gap-y-8">
-                  <Link to="/habits-list" className="text-base font-medium text-white hover:text-violet-300">
-                    Lista de Hábitos
-                  </Link>
-                  <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
-                    Sumário
-                  </Link>
-                </nav>
-              </div>
+              <nav className="flex flex-col items-end gap-y-8 mt-6 mr-4">
+                <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
+                  Início
+                </Link>
+                <Link to="/habits-list" className="text-base font-medium text-white hover:text-violet-300">
+                  Lista de Hábitos
+                </Link>
+              </nav>
             </div>
           </div>
         </Popover.Panel>
