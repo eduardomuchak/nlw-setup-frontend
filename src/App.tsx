@@ -1,11 +1,12 @@
+import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { MainRoutes } from './routes';
 
 function App() {
   return (
-    <div className={'w-screen h-screen flex justify-center items-center'}>
-      <Header />
+    <div>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -18,6 +19,9 @@ function App() {
         pauseOnHover
         theme="light"
       />
+      <BrowserRouter>
+        <MainRoutes />
+      </BrowserRouter>
     </div>
   );
 }
