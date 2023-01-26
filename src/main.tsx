@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import './lib/dayjs';
 import './styles/global.css';
 import ReactDOM from 'react-dom/client';

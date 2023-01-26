@@ -1,12 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
-import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { MainRoutes } from './routes';
 
 function App() {
   return (
-    <div>
+    <>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -22,7 +20,7 @@ function App() {
       <BrowserRouter>
         <MainRoutes />
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
