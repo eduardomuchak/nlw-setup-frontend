@@ -37,11 +37,8 @@ export function ListOfHabitsModal() {
   };
 
   useEffect(() => {
-    if (habits.length) setAllHabits(habits.sort((a: Habit, b: Habit) => (a.title > b.title ? 1 : -1)));
+    if (habits && habits.length) setAllHabits(habits.sort((a: Habit, b: Habit) => (a.title > b.title ? 1 : -1)));
   }, [habits]);
-
-  if (isLoading) return <Loading />;
-  if (error) return <RequestError />;
 
   return (
     <Dialog.Root>
@@ -59,25 +56,33 @@ export function ListOfHabitsModal() {
             <X size={24} aria-label="Botão Fechar Modal" />
           </Dialog.Close>
           <Dialog.Title className="text-3xl leading-tight font-extrabold">Lista de Hábitos</Dialog.Title>
-          <Dialog.Description className="text-xl mt-4 overflow-x-auto max-h-screen">
-            <ul className="mt-4">
-              {allHabits.map((habit) => (
-                <li key={habit.id} className="flex items-center justify-between mb-3">
-                  <span className="text-white">{habit.title}</span>
-                  <button
-                    className="group mr-2 p-1 rounded-lg hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all duration-300"
-                    onClick={() => handleDeleteHabit(habit.id)}
-                  >
-                    <Trash
-                      size={20}
-                      aria-label="Lixeira para deletar um hábito"
-                      className="text-red-500 group-hover:text-white transition-all duration-300"
-                    />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </Dialog.Description>
+          {isLoading ? <Loading /> : null}
+          {error ? <RequestError /> : null}
+          {habits && habits.length ? (
+            <Dialog.Description className="text-xl mt-4 overflow-x-auto max-h-screen">
+              <ul className="mt-4">
+                {allHabits.map((habit) => (
+                  <li key={habit.id} className="flex items-center justify-between mb-3">
+                    <span className="text-white">{habit.title}</span>
+                    <button
+                      className="group mr-2 p-1 rounded-lg hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all duration-300"
+                      onClick={() => handleDeleteHabit(habit.id)}
+                    >
+                      <Trash
+                        size={20}
+                        aria-label="Lixeira para deletar um hábito"
+                        className="text-red-500 group-hover:text-white transition-all duration-300"
+                      />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </Dialog.Description>
+          ) : (
+            <div className="mt-5">
+              <span className="text-zinc-500">Nenhum hábito cadastrado</span>
+            </div>
+          )}
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
