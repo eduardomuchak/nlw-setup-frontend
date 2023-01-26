@@ -19,6 +19,7 @@ function NewHabitForm() {
       setFormValues({ title: '', weekDays: [] });
       toast.success('Hábito criado com sucesso');
       queryClient.invalidateQueries({ queryKey: ['summary'] });
+      queryClient.invalidateQueries({ queryKey: ['habits'] });
     },
     onError: () => {
       toast.error('Erro ao criar hábito');
