@@ -1,12 +1,15 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
 import { useState } from 'react';
 import { getWithExpiry, setWithExpiry } from '../../utils/handle-local-storage';
+import { toast } from 'react-toastify';
 
 export function LoginPage() {
+  const navigate = useNavigate();
+
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
@@ -15,7 +18,9 @@ export function LoginPage() {
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formValues.email === '' || formValues.password === '') return;
-    setWithExpiry('@User', formValues.email, 1000 * 60 * 60 * 24);
+    toast.success('Login realizado com sucesso!');
+    sessionStorage.setItem('@User', JSON.stringify({ email: formValues.email }));
+    navigate('/inicio');
   };
 
   return (

@@ -3,9 +3,17 @@ import { Popover, Transition } from '@headlessui/react';
 import { List, X } from 'phosphor-react';
 
 import logo from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function Header() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    toast.info('Você saiu da sua conta!');
+    localStorage.removeItem('@User');
+    navigate('/');
+  };
+
   return (
     <Popover className="relative bg-transparent">
       <div className="mx-auto max-w-5xl px-6">
@@ -29,7 +37,10 @@ export function Header() {
             </Link>
           </nav>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <button className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:bg-violet-600 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background">
+            <button
+              className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:bg-violet-600 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background"
+              onClick={() => handleLogout()}
+            >
               Sair
             </button>
           </div>
