@@ -71,7 +71,7 @@ $ cd nlw-setup-frontend
 $ npm i 
 
 # Rode o projeto
-$ npm rum dev 
+$ npm run dev 
 
 ```
 
