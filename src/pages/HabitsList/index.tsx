@@ -38,6 +38,30 @@ export function HabitsListPage() {
     mutation.mutate(id);
   };
 
+  const formatWeekDays = (weekDays: number[]) => {
+    const weekDaysFormatted = weekDays.map((weekDay) => {
+      switch (weekDay) {
+        case 0:
+          return 'Domingo';
+        case 1:
+          return 'Segunda';
+        case 2:
+          return 'Terça';
+        case 3:
+          return 'Quarta';
+        case 4:
+          return 'Quinta';
+        case 5:
+          return 'Sexta';
+        case 6:
+          return 'Sábado';
+        default:
+          return '';
+      }
+    });
+    return weekDaysFormatted.join(', ');
+  };
+
   useEffect(() => {
     if (habits && habits.length) setAllHabits(habits.sort((a: Habit, b: Habit) => (a.title > b.title ? 1 : -1)));
   }, [habits]);
@@ -61,14 +85,14 @@ export function HabitsListPage() {
 
   return (
     <PageContainer>
-      <div className={'w-full max-w-5xl h-[88%] px-6 flex flex-col gap-16 flex-1 items-center justify-center mx-auto'}>
-        <table className="w-full w-max-5xl rounded-lg overflow-hidden">
-          <thead className="w-full bg-violet-500 rounded-lg">
+      <div className={'w-full max-w-5xl h-[88%] px-6 flex flex-col gap-16 flex-1 items-center justify-start mx-auto'}>
+        <table className="w-full w-max-5xl rounded-lg overflow-hidden mt-14">
+          <thead className="w-full bg-violet-600 rounded-lg">
             <tr className="flex w-full py-4 px-6">
               {header.map((column, index) => {
                 return (
                   <th key={`${column}-${index}`} className={index === 2 ? 'flex-0' : 'flex-1'}>
-                    {column}
+                    <span className="font-normal">{column}</span>
                   </th>
                 );
               })}
@@ -77,19 +101,17 @@ export function HabitsListPage() {
           <tbody>
             {allHabits.map((habit, index) => {
               return (
-                <tr key={`${habit}-${index}`} className="flex w-full py-4 px-6">
-                  <td className="flex-1">{habit.title}</td>
-                  <td className="flex-1 text-center">
-                    {habit.weekDays.map((weekDay, index) => {
-                      return <span key={`${weekDay}-${index}`}>{weekDay.week_day}</span>;
-                    })}
+                <tr key={`${habit}-${index}`} className="flex w-full py-4 px-6 bg-zinc-900">
+                  <td className="flex-1 flex items-center justify-start">{habit.title}</td>
+                  <td className="flex-1 flex items-center justify-center">
+                    {formatWeekDays(habit.weekDays.map((weekDay) => weekDay.week_day))}
                   </td>
-                  <td className="flex-0 text-center">
-                    <button className="group p-1 rounded-lg hover:bg-violet-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all duration-300">
+                  <td className="flex-0 flex items-center justify-center">
+                    <button className="group p-1 rounded-lg hover:bg-violet-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all duration-300">
                       <Pencil
                         size={20}
                         aria-label="Lápis para editar um hábito"
-                        className="text-violet-500 group-hover:text-white transition-all duration-300"
+                        className="text-violet-600 group-hover:text-white transition-all duration-300"
                       />
                     </button>
                     <button
@@ -107,6 +129,13 @@ export function HabitsListPage() {
               );
             })}
           </tbody>
+          <tfoot className="w-full bg-violet-600 rounded-lg">
+            <tr className="flex w-full py-4 px-6">
+              {header.map((index) => {
+                return <th key={`${index}`} className={'flex-1'} />;
+              })}
+            </tr>
+          </tfoot>
         </table>
       </div>
     </PageContainer>
