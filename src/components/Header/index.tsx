@@ -29,7 +29,7 @@ export function Header() {
             </Popover.Button>
           </div>
           <nav className="hidden space-x-10 md:flex">
-            <Link to="/" className="text-base font-medium text-white hover:text-violet-300">
+            <Link to="/inicio" className="text-base font-medium text-white hover:text-violet-300">
               Início
             </Link>
             <Link to="/habits-list" className="text-base font-medium text-white hover:text-violet-300">
