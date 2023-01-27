@@ -7,6 +7,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { RequireAuth } from './RequireAuth';
 import { Layout } from '../components/Layout';
+import { UnderDevelopmentPage } from '../pages/UnderDevelopment';
 
 export function MainRoutes() {
   const location = useLocation();
@@ -15,6 +16,7 @@ export function MainRoutes() {
       <Route path="/" element={<Layout />}>
         {/* public routes */}
         <Route index path="/" element={<LoginPage />} />
+        <Route index path="/recuperar-senha" element={<UnderDevelopmentPage />} />
         <Route path="*" element={<NotFoundPage />} />
 
         {/* protected routes */}
